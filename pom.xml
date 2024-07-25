@@ -1,0 +1,189 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-parent</artifactId>
+	    <version>2.4.2</version>
+	</parent>
+  
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.learn.reptile</groupId>
+  <artifactId>reptile</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <properties>
+    <java.version>1.8</java.version>
+    <mybatis.plus.version>3.4.2</mybatis.plus.version>
+    <druid.version>1.1.18</druid.version>
+    <mysql.version>8.0.13</mysql.version>
+    <!--<log4j.version>1.2.17</log4j.version>-->
+
+    <hutool.version>5.5.8</hutool.version>
+    <guava.version>28.1-jre</guava.version>
+    
+    <shiro.version>1.13.0</shiro.version>
+	<httpclient.version>4.5.3</httpclient.version>
+  </properties>
+  
+  <dependencies>
+        <!-- Druid引入 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+
+        <!-- 数据源驱动 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+        
+        <!-- mybatis-plus依赖 -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis.plus.version}</version>
+        </dependency>
+        
+        <dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-web</artifactId>
+	        <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+	    </dependency>
+	    
+	    <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+			<version>2.4.2</version>
+		</dependency>
+		
+		  <!-- spring-boot-starter-data-redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <!--            <optional>true</optional>-->
+        </dependency>
+        
+         <!-- guava支持 -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+            <version>2.0.13</version>
+        </dependency>
+        
+        
+	    <dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-devtools</artifactId>
+	        <scope>runtime</scope>
+	        <optional>true</optional>
+	    </dependency>
+	    
+	     <!--        shiro 核心类库-->
+	    <dependency>
+		    <groupId>org.apache.shiro</groupId>
+		    <artifactId>shiro-core</artifactId>
+		    <version>${shiro.version}</version>
+	    </dependency>
+	    <!-- shiro 整合sping -->
+	    <dependency>
+	        <groupId>org.apache.shiro</groupId>
+	        <artifactId>shiro-spring</artifactId>
+	        <version>${shiro.version}</version>
+	    </dependency>
+	
+	    <!-- 日志框架依赖 -->
+	    <!--<dependency>
+	        <groupId>log4j</groupId>
+	        <artifactId>log4j</artifactId>
+	        <version>${log4j.version}</version>
+	    </dependency>-->
+	
+	    <dependency>
+	        <groupId>org.apache.httpcomponents</groupId>
+	        <artifactId>httpclient</artifactId>
+	        <version>${httpclient.version}</version>
+	    </dependency>
+	    
+	    <dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-all</artifactId>
+			<version>${hutool.version}</version>
+		</dependency>
+        
+         <!--        okhttp依赖-->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>4.9.1</version>
+        </dependency>
+	</dependencies>
+	
+	 <build>
+	    <resources>
+	        <resource>
+	            <directory>src/main/resources</directory>
+	            <filtering>true</filtering>
+	        </resource>
+	        <resource>
+	            <directory>src/main/java</directory>
+	            <includes>
+	                <include>**/*.xml</include>
+	            </includes>
+	        </resource>
+	    </resources>
+	    
+	    <plugins>
+	        <plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-compiler-plugin</artifactId>
+	            <configuration>
+	                <source>8</source>
+	                <target>8</target>
+	            </configuration>
+	        </plugin>
+			 
+			 <plugin>
+	            <groupId>org.springframework.boot</groupId>
+	            <artifactId>spring-boot-maven-plugin</artifactId>
+	            <configuration>
+	                <includeSystemScope>true</includeSystemScope>
+	            </configuration>
+	            <executions>
+	                <execution>
+	                    <goals>
+	                        <goal>repackage</goal>
+	                    </goals>
+	                </execution>
+	            </executions>
+	        </plugin>
+	   </plugins>
+	</build>
+</project>

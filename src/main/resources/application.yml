@@ -1,0 +1,50 @@
+server:
+  port: 8080
+  
+spring:
+  application:
+    name: reptile
+  main:
+    allow-bean-definition-overriding: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm
+    time-zone: GMT+8
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  redis:
+    database: 1
+    host: sincerely-host
+    password: 85861367LiGzy
+  datasource:
+    username: test
+    password: test
+    url: jdbc:mysql://localhost:3306/reptile?useUnicode=true&useSSL=false&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initial-size: 2
+    min-idle: 1
+    max-active: 20
+    max-wait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: "select 'x'"
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat
+    
+mybatis:
+  type-aliases-package: com.learn.reptile.entity.po
+  mapper-locations: classpath:/mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    
+    
+logging:
+  config: classpath:log4j2.xml
+
+shiro:
+  session-timeout: 1000000
