@@ -64,9 +64,9 @@ public class CustomRealm extends AuthorizingRealm {
 		}
 		
 		Session session = SecurityUtils.getSubject().getSession();
-		String token = (String)session.getAttribute(WebConstants.LOGIN_USER_TOKEN);
-		if(StringUtils.isBlank(token)) {
-			token = System.currentTimeMillis() + "-" + user.getId();
+//		String token = (String)session.getAttribute(WebConstants.LOGIN_USER_TOKEN);
+//		if(StringUtils.isBlank(token)) {
+			String token = System.currentTimeMillis() + "-" + user.getId();
 			user.setToken(token);
 			valueOperations.set(token, JSON.toJSONString(user), 1, TimeUnit.DAYS);
 			
@@ -75,7 +75,7 @@ public class CustomRealm extends AuthorizingRealm {
 			session.setAttribute(WebConstants.LOGIN_USER_NAME, user.getUsername());
 			session.setAttribute(WebConstants.LOGIN_USER, user);
 			session.setTimeout(sessionTimeout);
-		}
+//		}
 		return new SimpleAuthenticationInfo(username, password, getName());
 	}
 
